@@ -1,3 +1,4 @@
+import React from "react";
 export default function TicketItem({ dispatch, ticket }) {
     const { id, title, description, priority } = ticket
 
@@ -9,10 +10,11 @@ export default function TicketItem({ dispatch, ticket }) {
 
     return (
         <div className="ticket-item">
-            <div className={`priority-dot ${priorityClass[ticket.priority]}`}>
-                <h3>{title}</h3>
-                <h3>{description}</h3>
-            </div>
-        </div>
+            <div className={`priority-dot ${priorityClass[ticket.priority]}`}></div>
+            <h3>{title}</h3>
+            <h3>{description}</h3>
+            <button className="button" onClick={() => dispatch({ type: "DELETE_TICKET", payload: { id } })}>Delete</button>
+            <button className="button" onClick={() => dispatch({ type: "SET_EDITING_TICKET", payload: ticket })} > Edit</button>
+        </div >
     );
 }
